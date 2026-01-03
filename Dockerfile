@@ -1,6 +1,6 @@
 FROM php:8.4-fpm
 
-# System dependencies
+# System deps
 RUN apt-get update && apt-get install -y \
     git unzip zip curl \
     libpng-dev libonig-dev libxml2-dev \
@@ -17,18 +17,17 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www
 
-# Copy project files
+# Copy files
 COPY . .
 
-# Install PHP deps
-RUN composer install --no-dev --optimize-autoloader
+# Laravel permissions
+RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 
-# Frontend build (Vite)
+# PHP deps
+RUN composer install --no-dev --optimize-autoloader --no-interaction
+
+# Frontend build
 RUN npm install && npm run build
-
-# Laravel setup
-RUN php artisan key:generate
-RUN php artisan storage:link
 
 EXPOSE 10000
 

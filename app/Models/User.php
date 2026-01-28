@@ -36,7 +36,7 @@ class User extends Authenticatable
 
     /**
      * Get the attributes that should be cast.
-     *
+     *'
      * @return array<string, string>
      */
     protected function casts(): array
@@ -49,6 +49,7 @@ class User extends Authenticatable
 
     public function chirps(): HasMany
     {
-        return $this->hasMany(Chrip::class);
+        return $this->hasMany(Chirp::class);
     }
 }
+

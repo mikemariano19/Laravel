@@ -11,23 +11,10 @@ class ChirpsController extends Controller
      */
     public function index()
     {
-        $chirps = [
-            [
-                'author' => 'Alice',
-                'message' => 'Hello, world!',
-                'timestamp' => '2024-06-01 10:00:00'
-            ],
-            [
-                'author' => 'Bob',
-                'message' => 'Just had a great lunch!',
-                'timestamp' => '2024-06-01 12:30:00'
-            ],
-            [
-                'author' => 'Charlie',
-                'message' => 'Looking forward to the weekend.',
-                'timestamp' => '2024-06-01 15:45:00'
-            ],
-        ];
+        $chirps = \App\Models\Chirp::with('user')
+        ->latest()
+        ->take(50)
+        ->get();
 
         return view('home', ['chirps' => $chirps]);
     }

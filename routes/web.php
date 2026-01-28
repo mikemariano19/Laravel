@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AppController;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [AppController::class, 'index']);
+Route::get('/', [Controller::class, 'index']);

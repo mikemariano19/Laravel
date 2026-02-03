@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ChirpsController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [Controller::class, 'index']);
+Route::get('/', [ChirpsController::class, 'index']);

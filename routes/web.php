@@ -4,4 +4,7 @@ use App\Http\Controllers\ChirpsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ChirpsController::class, 'index']);
-Route::post('/chirps', [ChirpsController::class, 'store']);
+
+Route::resource('chirps', ChirpsController::class)
+    ->only(['store', 'edit', 'update', 'destroy']);
+

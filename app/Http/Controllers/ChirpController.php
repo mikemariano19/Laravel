@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Chirp;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+
 
 class ChirpController extends Controller
 {
@@ -38,7 +41,7 @@ class ChirpController extends Controller
         ]);
     
         // Use the authenticated user
-        auth()->user()->chirps()->create($validated);
+        auth::user()->chirps()->create($validated);
     
         return redirect('/')->with('success', 'Your chirp has been posted!');
     }
